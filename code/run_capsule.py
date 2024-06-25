@@ -33,10 +33,8 @@ skip_unit_properties = [
 
 if __name__ == "__main__":
     # find base NWB file
-    nwb_files = [
-        p for p in data_folder.glob("**/*") 
-        if (p.name.endswith(".nwb") or p.name.endswith(".nwb.zarr"))
-        and ("ecephys_" in p.name or "behavior_" in p.name)
+    nwb_files = [p for p in data_folder.iterdir()
+        if p.name.endswith(".nwb") or p.name.endswith(".nwb.zarr")
     ]
     assert len(nwb_files) == 1, "Attach one base NWB file data at a time"
     nwbfile_input_path = nwb_files[0]
